@@ -22,7 +22,7 @@ export const accountInterceptors = async (forwardToServices: boolean, builder: P
     // Any endpoint that is defined here will not be sent to the service through the above
     // pattern interceptor. This is useful for mocking endpoints that are not defined in the
     // service yet.
-    if (forwardToServices) {
+    if (!forwardToServices) {
         builder.interceptRequest(
             Patterns.account.getOrRegister.allRequestUsages,
             Patterns.account.getOrRegister.handleAsync(async (input, ctx) => {

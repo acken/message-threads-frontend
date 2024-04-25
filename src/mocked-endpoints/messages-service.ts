@@ -24,7 +24,7 @@ export const messagesInterceptors = async (forwardToServices: boolean, builder: 
     // Any endpoint that is defined here will not be sent to the service through the above
     // pattern interceptor. This is useful for mocking endpoints that are not defined in the
     // service yet.
-    if (forwardToServices) {
+    if (!forwardToServices) {
         builder.interceptRequest(
             Patterns.messages.getDirectMessageList.allRequestUsages,
             Patterns.messages.getDirectMessageList.handleAsync(async (input, ctx) => {
