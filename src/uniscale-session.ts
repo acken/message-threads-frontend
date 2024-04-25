@@ -4,8 +4,13 @@ import { messagesInterceptors } from "./mocked-endpoints/messages-service";
 
 export class UniscaleSession {
     private static dispatcher: DispatcherSession
+    private static useServices: boolean
 
     private constructor() { }
+
+    public static configure(useServices: boolean): void {
+        this.useServices = useServices
+    }
 
     public static async getDispatcher(): Promise<DispatcherSession> {
         if (!UniscaleSession.dispatcher) {
@@ -25,8 +30,8 @@ export class UniscaleSession {
                 }
             })
             .withInterceptors(i => {
-                accountInterceptors(i)
-                messagesInterceptors(i)
+                accountInterceptors(this.useServices, i)
+                messagesInterceptors(this.useServices, i)
             })
             .build();
         this.dispatcher = session.asSolution("fb344616-794e-4bd7-b81a-fb1e3361701f")
