@@ -1,4 +1,4 @@
-import { DispatcherSession, FeatureContext, Platform, Result } from "@uniscale-sdk/ActorCharacter-Messagethreads";
+import { DispatcherSession, Platform } from "@uniscale-sdk/ActorCharacter-Messagethreads";
 import { accountInterceptors } from "./mocked-endpoints/account-service";
 import { messagesInterceptors } from "./mocked-endpoints/messages-service";
 
