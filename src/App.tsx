@@ -54,7 +54,7 @@ function App() {
         {!user ?
           <div>
             <p>Type user handle</p>
-            <input type="userHandle"  onChange={(e) => setUserHandle(e.target.value) }>{userHandle}</input>
+            <input type="userHandle" value={userHandle}  onChange={(e) => setUserHandle(e.target.value) } />
             <button onClick={async () => {
               register()
             }} >Register</button>
