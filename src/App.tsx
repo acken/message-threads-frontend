@@ -40,6 +40,7 @@ function App() {
       by: user?.userIdentifier
     }))
     if (result.success) {
+      setMessageText("")
       getMessages()
     }
   }
