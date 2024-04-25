@@ -12,12 +12,13 @@ function App() {
   UniscaleSession.configure(useServices)
 
   const [messageResult, setMessageResult] = useState<MessageFull[]>([])
+  const [userHandle, setUserHandle] = useState<string>("Test user")
   const [user, setUser] = useState<UserFull>()
   const [messageText, setMessageText] = useState<string>("")
 
   const register = async () => {
     const dispatcher = await UniscaleSession.getDispatcher()
-    const result = await dispatcher.request(GetOrRegister.with("user1"))
+    const result = await dispatcher.request(GetOrRegister.with(userHandle))
     if (result.success) {
       setUser(result.value as UserFull)
     }
@@ -53,6 +54,7 @@ function App() {
         {!user ?
           <div>
             <p>Type user handle</p>
+            <input type="userHandle"  onChange={(e) => setUserHandle(e.target.value) }>{userHandle}</input>
             <button onClick={async () => {
               register()
             }} >Register</button>
