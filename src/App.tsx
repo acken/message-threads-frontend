@@ -55,7 +55,7 @@ function App() {
         {!user ?
           <div>
             <p>Type user handle</p>
-            <input type="userHandle" value={userHandle}  onChange={(e) => setUserHandle(e.target.value) } />
+            <input value={userHandle}  onChange={(e) => setUserHandle(e.target.value) } />
             <button onClick={async () => {
               register()
             }} >Register</button>
@@ -63,7 +63,7 @@ function App() {
           <div>
             <div>
               <p>Type message</p>
-              <input type="messageText"  onChange={(e) => setMessageText(e.target.value) } />
+              <input value={messageText}  onChange={(e) => setMessageText(e.target.value) } />
               <button onClick={async () => {
                 sendMessage()
               }} >Add a message</button>
