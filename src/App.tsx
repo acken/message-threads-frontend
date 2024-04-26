@@ -45,10 +45,6 @@ function App() {
     }
   }
 
-  useEffect(() => { 
-    getMessages();
-  }, [])
-
   return (
     <div className="App">
       <header className="App-header">
