@@ -5,7 +5,7 @@ import axios, { AxiosResponse } from "axios";
 
 export const accountInterceptors = async (forwardToServices: boolean, builder: PlatformInterceptorBuilder) => {
     // Pattern interceptor to send requests to the service over HTTP
-    const serviceUrl = "http://localhost:3000/api/ServiceToModule";
+    const serviceUrl = "https://uniscale-demo-messagethreads-account-service.azurewebsites.net/api/servicetomodule";
     builder.interceptPattern(
         Patterns.account.pattern,
         async (input, ctx) => {

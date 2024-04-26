@@ -7,7 +7,7 @@ export const messagesInterceptors = async (forwardToServices: boolean, builder: 
     const messages: MessageFull[] = []
 
     // Pattern interceptor to send requests to the service over HTTP
-    const serviceUrl = "http://localhost:7071/api/ServiceToModule";
+    const serviceUrl = "https://uniscale-demo-messagethreads-messages-service.azurewebsites.net/api/servicetomodule";
     builder.interceptPattern(
         Patterns.messages.pattern,
         async (input, ctx) => {
