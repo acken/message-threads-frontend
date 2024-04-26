@@ -25,7 +25,6 @@ function App() {
   }
 
   const getMessages = async () => {
-
     const dispatcher = await UniscaleSession.getDispatcher()
     const result = await dispatcher.request(GetMessageList.with(new Empty()))
     if (result.success) {
