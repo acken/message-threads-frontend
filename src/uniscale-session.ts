@@ -1,6 +1,6 @@
 import { DispatcherSession, Platform } from "@uniscale-sdk/ActorCharacter-Messagethreads";
-import { accountInterceptors } from "./mocked-endpoints/account-service";
-import { messagesInterceptors } from "./mocked-endpoints/messages-service";
+import { accountInterceptors } from "./service-endpoints/account-service";
+import { messagesInterceptors } from "./service-endpoints/messages-service";
 
 export class UniscaleSession {
     private static dispatcher: DispatcherSession
@@ -22,7 +22,7 @@ export class UniscaleSession {
     private static async initialize(): Promise<void> {
         var session = await Platform.builder()
             .inspectRequests((input, ctx) => {
-                console.log("Requesting: " + ctx.featureId)
+                console.log("Requesting: " + ctx.featureId, input)
             })
             .inspectResponses((output, input, ctx) => {
                 if (!output.success) {

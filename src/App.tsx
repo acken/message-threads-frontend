@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import './App.css';
-import { GetMessageList } from '@uniscale-sdk/ActorCharacter-Messagethreads/sdk/UniscaleDemo/Messages_1_0/Functionality/ServiceToModule/Messages/Timeline/ListMessages';
-import { Empty, MessageFull } from '@uniscale-sdk/ActorCharacter-Messagethreads/sdk/UniscaleDemo/Messages/Messages';
 import { UniscaleSession } from './uniscale-session';
-import { SendMessage } from '@uniscale-sdk/ActorCharacter-Messagethreads/sdk/UniscaleDemo/Messages_1_0/Functionality/ServiceToModule/Messages/Timeline/SendMessage';
-import { GetOrRegister } from '@uniscale-sdk/ActorCharacter-Messagethreads/sdk/UniscaleDemo/Account_1_0/Functionality/ServiceToModule/Account/Registration/ContinueToApplication';
+import { Empty, MessageFull } from '@uniscale-sdk/ActorCharacter-Messagethreads/sdk/UniscaleDemo/Messages/Messages';
 import { UserFull } from '@uniscale-sdk/ActorCharacter-Messagethreads/sdk/UniscaleDemo/Account/Account';
+import { GetOrRegister } from '@uniscale-sdk/ActorCharacter-Messagethreads/sdk/UniscaleDemo/Account_1_0/Functionality/ServiceToModule/Account/Registration/ContinueToApplication';
+import { GetMessageList } from '@uniscale-sdk/ActorCharacter-Messagethreads/sdk/UniscaleDemo/Messages_1_0/Functionality/ServiceToModule/Messages/Timeline/ListMessages';
+import { SendMessage } from '@uniscale-sdk/ActorCharacter-Messagethreads/sdk/UniscaleDemo/Messages_1_0/Functionality/ServiceToModule/Messages/Timeline/SendMessage';
 
 function App() {
   const useServices = window.location.search.includes("services=yes")
@@ -46,35 +46,33 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        {!user ?
-          <div>
-            <p>Type user handle</p>
-            <input value={userHandle}  onChange={(e) => setUserHandle(e.target.value) } />
+      {!user ?
+        <p>
+          Type user handle<br/>
+          <input value={userHandle}  onChange={(e) => setUserHandle(e.target.value) } />
+          <button onClick={async () => {
+            register()
+          }} >Register</button>
+        </p> :
+        <div>
+          <p>
+            Type message<br/>
+            <input value={messageText}  onChange={(e) => setMessageText(e.target.value) } />
             <button onClick={async () => {
-              register()
-            }} >Register</button>
-          </div> :
+              sendMessage()
+            }} >Add a message</button>
+          </p>
           <div>
-            <div>
-              <p>Type message</p>
-              <input value={messageText}  onChange={(e) => setMessageText(e.target.value) } />
-              <button onClick={async () => {
-                sendMessage()
-              }} >Add a message</button>
+            Messages<br/>
+            <div className="message">
+              {
+                messageResult.map((message) => {
+                  return <div key={message.messageIdentifier}>{message.message}</div>
+                })
+              }
             </div>
-            <div>
-              <p>Messages</p>
-              <div>
-                {
-                  messageResult.map((message) => {
-                    return <div key={message.messageIdentifier}>{message.message}</div>
-                  })
-                }
-              </div>
-            </div>
-          </div>}
-      </header>
+          </div>
+        </div>}
     </div>
   );
 }
